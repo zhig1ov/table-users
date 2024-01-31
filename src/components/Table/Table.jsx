@@ -1,26 +1,26 @@
 import React, {useState} from 'react';
 import options from '../../utils/options.json';
 import {getUsers} from "../../utils/fetchData";
-import './Table.css'
+import './Table.css';
 import Select from "../Select/Select";
 import {Modal} from "../Modal/Modal";
-import {COLUMNS as columns, MODAL_FORMAT as modalFormat} from "../../utils/columns";
+import {COLUMNS as columns} from "../../utils/columns";
 
 export const Table = ({ data }) => {
-    const [userData, setUserData] = useState(data)
+    const [userData, setUserData] = useState(data);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
     const [inputData, setInputData] = useState('');
     const [searchData, setSearchData] = useState([])
     const [sortColumn, setSortColumn] = useState('');
     const [sortOrder, setSortOrder] = useState('');
-    const [modalActive, setModalActive] = useState(true);
-    const [idx, setIdx] = useState(null)
+    const [modalActive, setModalActive] = useState(false);
+    const [idx, setIdx] = useState('');
 
 
     let result = userData;
     if (searchData.length !== 0) {
-        result = searchData
+        result = searchData;
     }
 
     //Sorting
@@ -62,11 +62,11 @@ export const Table = ({ data }) => {
     }
 
     const onSelect = (e) => {
-        setRowsPerPage(e.target.value)
+        setRowsPerPage(e.target.value);
     }
 
     const onChangeHandler =  (e) => {
-        setInputData(e.target.value)
+        setInputData(e.target.value);
         getUsers(`https://dummyjson.com/users/search?q=`, setSearchData, inputData)
     }
 
@@ -116,13 +116,13 @@ export const Table = ({ data }) => {
                    <tbody>
                    {result.map((dataRow, idx) => (
                            <tr onClick={() => {
-                               console.log("Row index is: " + idx)
+
                                setModalActive(true)
                                setIdx(idx)
                            }}
                                key={`data${idx}`}>
                                {columns.map(column => (
-                                   <td className='table-td'>{dataRow[column.field]}</td>
+                                   <td key={`col${column.field}`} className='table-td'>{dataRow[column.field]}</td>
                                ))}
                            </tr>
                        )
@@ -137,7 +137,12 @@ export const Table = ({ data }) => {
                    </div>
                </footer>
            </div>
-
+            <Modal
+                active={modalActive}
+                setActive={setModalActive}
+                idx={idx}
+                data={result}
+            />
        </div>
     );
 };

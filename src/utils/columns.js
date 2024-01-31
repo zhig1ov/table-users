@@ -50,4 +50,4 @@ export const MODAL_FORMAT = [
         title: 'Email',
         field: 'email'
     },
-]
+];

@@ -1,4 +1,4 @@
-export async function getUsers(url,fn, searchVal) {
+export async function getUsers(url,fn, searchVal, key) {
     try {
         // получаем объект ответа
         const response = await fetch(searchVal ? `${url}${searchVal}` : `${url}`);
@@ -24,9 +24,9 @@ export async function getUsers(url,fn, searchVal) {
             }
             usersData.push(userData);
         })
-        setTimeout(() => fn(usersData), 2000);
+        fn(usersData);
     } catch (err) {
-        alert(`Произошел сбой при загрузке списка пользователей - ${err.message}` )
-        console.log(err.message)
+        alert(`Произошел сбой при загрузке списка пользователей - ${err.message}` );
+        console.log(err.message);
     }
 }
