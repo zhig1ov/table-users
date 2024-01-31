@@ -1,0 +1,59 @@
+.DataTable {
+    max-width: 1200px;
+    margin: 50px auto;
+    flex-grow: 1;
+}
+
+.table  {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-td,
+.table-th {
+    text-align: left;
+    border: 1px solid #eee;
+    padding: 10px 15px;
+}
+
+.table-th {
+    resize:horizontal;
+    overflow:auto;
+    min-width: 50px;
+}
+
+.footer {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pagination {
+    display: flex;
+    width: 60px;
+    justify-content: space-between;
+}
+
+.pagination-btn {
+    background: #eee;
+    border: 1px solid #ccc;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.sort-btn {
+    background: none;
+    border: 0 solid;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search-input {
+    display: block;
+    padding: 10px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-bottom: 10px;
+}
