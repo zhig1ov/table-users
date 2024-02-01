@@ -86,7 +86,7 @@ export const Table = ({ data }) => {
     }
 
     return (
-       <div>
+       <>
            <div className="DataTable">
 
                <input
@@ -143,6 +143,6 @@ export const Table = ({ data }) => {
                 idx={idx}
                 data={result}
             />
-       </div>
+       </>
     );
 };
